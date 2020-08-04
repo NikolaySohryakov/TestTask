@@ -27,6 +27,8 @@ class PersonDetailsViewModel: ObservableObject {
     
     func loadPersonDetails() {
         isLoading = true
+        showError = false
+        errorMessage = ""
 
         let personDetailsPublisher = repository.loadPersonDetails(person).receive(on: DispatchQueue.main).share()
 

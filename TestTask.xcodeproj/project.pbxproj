@@ -13,7 +13,7 @@
 		29B7541524D81A1900C6E5F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B7541424D81A1900C6E5F7 /* Assets.xcassets */; };
 		29B7541824D81A1900C6E5F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B7541724D81A1900C6E5F7 /* Preview Assets.xcassets */; };
 		29B7541B24D81A1900C6E5F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B7541924D81A1900C6E5F7 /* LaunchScreen.storyboard */; };
-		29B7542624D81A1A00C6E5F7 /* TestTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7542524D81A1A00C6E5F7 /* TestTaskTests.swift */; };
+		29B7542624D81A1A00C6E5F7 /* PeopleListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7542524D81A1A00C6E5F7 /* PeopleListViewModelTests.swift */; };
 		29B7543524D81AB600C6E5F7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543424D81AB600C6E5F7 /* Person.swift */; };
 		29B7543724D81B1900C6E5F7 /* PeopleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543624D81B1900C6E5F7 /* PeopleListViewModel.swift */; };
 		29B7543A24D81B4200C6E5F7 /* PeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543924D81B4200C6E5F7 /* PeopleRepository.swift */; };
@@ -21,10 +21,20 @@
 		29B7544124D8212600C6E5F7 /* FakePeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7544024D8212600C6E5F7 /* FakePeopleRepository.swift */; };
 		29B7544324D82E0100C6E5F7 /* PersonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7544224D82E0100C6E5F7 /* PersonDetails.swift */; };
 		29B7544724D82F1A00C6E5F7 /* PersonDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7544624D82F1A00C6E5F7 /* PersonDetailsViewModel.swift */; };
+		E3D6400D7A33F78F11C4858D /* PeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543924D81B4200C6E5F7 /* PeopleRepository.swift */; };
+		E3D640577BC91E2BEC4F01C5 /* PersonDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6459448FDC38BAE576FFB /* PersonDetailsTests.swift */; };
+		E3D642455A94EB5B7FFB18AA /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D64E9729418229F251FA87 /* RepositoryError.swift */; };
+		E3D642C5D26FD755D05E5C86 /* TestPeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D649A2E941CD9CA5A5F952 /* TestPeopleRepository.swift */; };
+		E3D642E059F9454436BA141E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543424D81AB600C6E5F7 /* Person.swift */; };
+		E3D64310A67DAD8F620C6E4D /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D647837F2C1EB987C6A6D6 /* ResponseError.swift */; };
 		E3D6435ADC3AE0C7082A675F /* ResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D64A2D98D6E061AAA4F729 /* ResponseContainer.swift */; };
+		E3D6461E06409087F3249D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7540E24D81A1600C6E5F7 /* AppDelegate.swift */; };
+		E3D64745E01694A64EC535B4 /* PersonDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7544624D82F1A00C6E5F7 /* PersonDetailsViewModel.swift */; };
+		E3D6492E0B95E47D318A3B54 /* PeopleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7543624D81B1900C6E5F7 /* PeopleListViewModel.swift */; };
 		E3D649BB23541D230B85297C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6433B5AEB9846D2909DC1 /* LoadingView.swift */; };
 		E3D64A97F225D081C3E839EE /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D647837F2C1EB987C6A6D6 /* ResponseError.swift */; };
 		E3D64CB78C0077916DD1DA97 /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D64E9729418229F251FA87 /* RepositoryError.swift */; };
+		E3D64D3B6E5AD76644B3E3A2 /* ResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D64A2D98D6E061AAA4F729 /* ResponseContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +57,7 @@
 		29B7541A24D81A1900C6E5F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29B7541C24D81A1900C6E5F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29B7542124D81A1A00C6E5F7 /* TestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		29B7542524D81A1A00C6E5F7 /* TestTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTaskTests.swift; sourceTree = "<group>"; };
+		29B7542524D81A1A00C6E5F7 /* PeopleListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewModelTests.swift; sourceTree = "<group>"; };
 		29B7542724D81A1A00C6E5F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29B7543424D81AB600C6E5F7 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		29B7543624D81B1900C6E5F7 /* PeopleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewModel.swift; sourceTree = "<group>"; };
@@ -57,7 +67,9 @@
 		29B7544224D82E0100C6E5F7 /* PersonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetails.swift; sourceTree = "<group>"; };
 		29B7544624D82F1A00C6E5F7 /* PersonDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewModel.swift; sourceTree = "<group>"; };
 		E3D6433B5AEB9846D2909DC1 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		E3D6459448FDC38BAE576FFB /* PersonDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDetailsTests.swift; sourceTree = "<group>"; };
 		E3D647837F2C1EB987C6A6D6 /* ResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		E3D649A2E941CD9CA5A5F952 /* TestPeopleRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPeopleRepository.swift; sourceTree = "<group>"; };
 		E3D64A2D98D6E061AAA4F729 /* ResponseContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseContainer.swift; sourceTree = "<group>"; };
 		E3D64E9729418229F251FA87 /* RepositoryError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,8 +134,10 @@
 		29B7542424D81A1A00C6E5F7 /* TestTaskTests */ = {
 			isa = PBXGroup;
 			children = (
-				29B7542524D81A1A00C6E5F7 /* TestTaskTests.swift */,
+				29B7542524D81A1A00C6E5F7 /* PeopleListViewModelTests.swift */,
 				29B7542724D81A1A00C6E5F7 /* Info.plist */,
+				E3D649A2E941CD9CA5A5F952 /* TestPeopleRepository.swift */,
+				E3D6459448FDC38BAE576FFB /* PersonDetailsTests.swift */,
 			);
 			path = TestTaskTests;
 			sourceTree = "<group>";
@@ -220,6 +234,8 @@
 			dependencies = (
 			);
 			name = TestTask;
+			packageProductDependencies = (
+			);
 			productName = TestTask;
 			productReference = 29B7540B24D81A1600C6E5F7 /* TestTask.app */;
 			productType = "com.apple.product-type.application";
@@ -257,7 +273,6 @@
 					};
 					29B7542024D81A1A00C6E5F7 = {
 						CreatedOnToolsVersion = 11.5;
-						TestTargetID = 29B7540A24D81A1600C6E5F7;
 					};
 				};
 			};
@@ -270,6 +285,8 @@
 				Base,
 			);
 			mainGroup = 29B7540224D81A1600C6E5F7;
+			packageReferences = (
+			);
 			productRefGroup = 29B7540C24D81A1600C6E5F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -326,7 +343,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29B7542624D81A1A00C6E5F7 /* TestTaskTests.swift in Sources */,
+				29B7542624D81A1A00C6E5F7 /* PeopleListViewModelTests.swift in Sources */,
+				E3D642C5D26FD755D05E5C86 /* TestPeopleRepository.swift in Sources */,
+				E3D6400D7A33F78F11C4858D /* PeopleRepository.swift in Sources */,
+				E3D642455A94EB5B7FFB18AA /* RepositoryError.swift in Sources */,
+				E3D64310A67DAD8F620C6E4D /* ResponseError.swift in Sources */,
+				E3D642E059F9454436BA141E /* Person.swift in Sources */,
+				E3D64D3B6E5AD76644B3E3A2 /* ResponseContainer.swift in Sources */,
+				E3D6492E0B95E47D318A3B54 /* PeopleListViewModel.swift in Sources */,
+				E3D6461E06409087F3249D07 /* AppDelegate.swift in Sources */,
+				E3D640577BC91E2BEC4F01C5 /* PersonDetailsTests.swift in Sources */,
+				E3D64745E01694A64EC535B4 /* PersonDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +537,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MX9H24GGG2;
 				INFOPLIST_FILE = TestTaskTests/Info.plist;
@@ -524,7 +550,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestTask.app/TestTask";
+				TESTING = YES;
 			};
 			name = Debug;
 		};
@@ -532,7 +558,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MX9H24GGG2;
 				INFOPLIST_FILE = TestTaskTests/Info.plist;
@@ -546,7 +571,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestTask.app/TestTask";
+				TESTING = YES;
 			};
 			name = Release;
 		};
