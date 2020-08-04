@@ -10,8 +10,8 @@ import Foundation
 import Combine
 
 class FakePeopleRepository: PeopleRepository {
-    func loadAllPeople() -> AnyPublisher<[Person], Never> {
-        Future<[Person], Never> { promise in
+    func loadAllPeople() -> AnyPublisher<[Person], RepositoryError> {
+        Future<[Person], RepositoryError> { promise in
             let people = [
                 Person(id: "id1"),
                 Person(id: "id2")
@@ -24,8 +24,8 @@ class FakePeopleRepository: PeopleRepository {
         .eraseToAnyPublisher()
     }
     
-    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, Never> {
-        Future<Person, Never> { promise in
+    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, RepositoryError> {
+        Future<Person, RepositoryError> { promise in
             var person = Person(id: "id1")
             person.firstName = "first name"
             person.lastName = "last name"

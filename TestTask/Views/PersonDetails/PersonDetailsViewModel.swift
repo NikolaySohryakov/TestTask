@@ -16,6 +16,9 @@ class PersonDetailsViewModel: ObservableObject {
     
     @Published var person: Person
     @Published var isLoading: Bool = false
+
+    @Published var errorMessage: String = ""
+    @Published var showError: Bool = false
     
     init(repository: PeopleRepository, person: Person) {
         self.repository = repository
@@ -29,11 +32,31 @@ class PersonDetailsViewModel: ObservableObject {
 
         personDetailsPublisher
                 .map { _ in false }
+                .replaceError(with: false)
                 .assign(to: \.isLoading, on: self)
                 .store(in: &cancelBag)
 
         personDetailsPublisher
-            .assign(to: \.person, on: self)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished: break
+                    case .failure(let error):
+                        self.handleError(error)
+                    }
+                }, receiveValue: { person in
+                    self.person = person
+                })
             .store(in: &cancelBag)
+    }
+
+    private func handleError(_ error: RepositoryError) {
+        switch error {
+        case .unknown, .failedToParseJSON:
+            errorMessage = "Something went wrong. Please try again."
+        case .custom(let message):
+            errorMessage = message
+        }
+
+        showError = true
     }
 }

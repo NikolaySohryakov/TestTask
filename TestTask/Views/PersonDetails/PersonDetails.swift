@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PersonDetails: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     @ObservedObject var viewModel: PersonDetailsViewModel
 
     var body: some View {
@@ -29,6 +31,11 @@ struct PersonDetails: View {
         .onAppear {
             UITableView.appearance().tableFooterView = UIView()
             self.viewModel.loadPersonDetails()
+        }
+        .alert(isPresented: self.$viewModel.showError) {
+            Alert(title: Text(self.viewModel.errorMessage), dismissButton: Alert.Button.default(Text("OK")) { 
+                self.mode.wrappedValue.dismiss()
+            })
         }
     }
 }

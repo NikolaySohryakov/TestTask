@@ -10,6 +10,6 @@ import Foundation
 import Combine
 
 protocol PeopleRepository {
-    func loadAllPeople() -> AnyPublisher<[Person], Never>
-    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, Never>
+    func loadAllPeople() -> AnyPublisher<[Person], RepositoryError>
+    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, RepositoryError>
 }

@@ -10,46 +10,90 @@ import Foundation
 import Combine
 
 class WebPeopleRepository: PeopleRepository {
-    func loadAllPeople() -> AnyPublisher<[Person], Never> {
+    func loadAllPeople() -> AnyPublisher<[Person], RepositoryError> {
         RequestBuilder.get(from: "/list")
-                .map { data, response in
-                    var result: ResponseContainer<[String]>?
+                .tryMap { data, response in
+                    var result: ResponseContainer<[String]>
 
                     do {
                         result = try JSONDecoder().decode(ResponseContainer<[String]>.self, from: data)
                     }
-                    catch(let e) {
-                        print(e)
+                    catch {
+                        throw RepositoryError.failedToParseJSON
                     }
 
-                    return result?.data.map { Person(id: $0) } ?? []
+                    return result
                 }
-                .replaceError(with: [])
+                .tryMap { (result: ResponseContainer<[String]>) -> [Person] in
+                    guard case .success = result.status else {
+                        if let message = result.error?.message {
+                            throw RepositoryError.custom(message: message)
+                        }
+                        else {
+                            throw RepositoryError.unknown
+                        }
+                    }
+
+                    let people = result.data?.map { Person(id: $0) } ?? []
+
+                    return people
+                }
+                .mapError { error in
+                    switch error {
+                    case is RepositoryError:
+                        return error as! RepositoryError
+                    default:
+                        return RepositoryError.unknown
+                    }
+                }
                 .eraseToAnyPublisher()
     }
     
-    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, Never> {
+    func loadPersonDetails(_ person: Person) -> AnyPublisher<Person, RepositoryError> {
         let path = "/get/\(person.id)"
 
         return RequestBuilder.get(from: path)
-                .map { data, response in
-                    var result: ResponseContainer<Person>?
+                .tryMap { data, response in
+                    var result: ResponseContainer<Person>
 
                     do {
                         result = try JSONDecoder().decode(ResponseContainer<Person>.self, from: data)
                     }
-                    catch(let e) {
-                        print(e)
+                    catch {
+                        throw RepositoryError.failedToParseJSON
                     }
 
-                    return result?.data ?? person
+                    return result
                 }
-                .replaceError(with: person)
+                .tryMap { (result: ResponseContainer<Person>) -> Person in
+                    guard case .success = result.status else {
+                        if let message = result.error?.message {
+                            throw RepositoryError.custom(message: message)
+                        }
+                        else {
+                            throw RepositoryError.unknown
+                        }
+                    }
+
+                    guard let person = result.data else {
+                        throw RepositoryError.unknown
+                    }
+
+                    return person
+                }      
+                .mapError { error in
+                    switch error {
+                    case is RepositoryError:
+                        return error as! RepositoryError
+                    default:
+                        return RepositoryError.unknown
+                    }
+                }
                 .eraseToAnyPublisher()
     }
 }
 
-final class RequestBuilder {
+fileprivate final class RequestBuilder {
     private static let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1OTY0NTY0MDUsImV4cCI6MTYyNzk5MjQwMywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiIiwidWlkIjoidWlkIiwiaWRlbnRpdHkiOiJpZGVudGl0eSJ9.f_6USygeyGeeNPSj4-nGFCef9rzmGYObznKFiS7VL5A"
     private static let baseURL = URL(string: "http://opn-interview-service.nn.r.appspot.com")!
 

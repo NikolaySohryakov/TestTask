@@ -6,6 +6,12 @@
 import Foundation
 
 struct ResponseContainer<T: Codable>: Codable {
-    var status: String
-    var data: T
+    enum ResponseStatus: String, Codable {
+        case success = "success"
+        case error = "error"
+    }
+
+    var status: ResponseStatus
+    var data: T?
+    var error: ResponseError?
 }

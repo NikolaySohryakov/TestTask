@@ -14,14 +14,24 @@ struct PeopleList: View {
     var body: some View {
         NavigationView {
             Group {
-                if viewModel.isLoading {
-                    LoadingView()
+                if viewModel.showError {
+                    VStack {
+                        Text(viewModel.errorMessage)
+                        Button("Try again") {
+                            self.viewModel.loadPeople()
+                        }
+                    }
                 }
                 else {
-                    List {
-                        ForEach(self.viewModel.allPeople) { person in
-                            NavigationLink(destination: self.personDetailsView(for: person)) {
-                                Text(person.id)
+                    if viewModel.isLoading {
+                        LoadingView()
+                    }
+                    else {
+                        List {
+                            ForEach(self.viewModel.allPeople) { person in
+                                NavigationLink(destination: self.personDetailsView(for: person)) {
+                                    Text(person.id)
+                                }
                             }
                         }
                     }

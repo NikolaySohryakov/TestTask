@@ -14,6 +14,9 @@ class PeopleListViewModel: ObservableObject {
     
     @Published var allPeople: [Person] = []
     @Published var isLoading: Bool = false
+
+    @Published var errorMessage: String = ""
+    @Published var showError: Bool = false
     
     private var cancelBag: Set<AnyCancellable> = []
     
@@ -22,17 +25,39 @@ class PeopleListViewModel: ObservableObject {
     }
     
     func loadPeople() {
+        showError = false
+        errorMessage = ""
         isLoading = true
 
         let loadAllPeoplePublisher = repository.loadAllPeople().receive(on: DispatchQueue.main).share()
 
         loadAllPeoplePublisher
                 .map { _ in false }
+                .replaceError(with: false)
                 .assign(to: \.isLoading, on: self)
                 .store(in: &cancelBag)
 
         loadAllPeoplePublisher
-            .assign(to: \.allPeople, on: self)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self.handleError(error)
+                }
+            }, receiveValue: { people in
+                self.allPeople = people
+            })
             .store(in: &cancelBag)
+    }
+
+    private func handleError(_ error: RepositoryError) {
+        switch error {
+        case .unknown, .failedToParseJSON:
+            errorMessage = "Something went wrong. Please try again."
+        case .custom(let message):
+            errorMessage = message
+        }
+
+        showError = true
     }
 }
